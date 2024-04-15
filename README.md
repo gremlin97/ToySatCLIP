@@ -1,7 +1,7 @@
 # ToySatCLIP
 
 ## Goal
-My implementation of a ToySatCLIP model trained on the S2-100k dataset.
+Implement a ToySatCLIP model from scratch, trained on the S2-100k dataset. Perform a downstream task and validate both training and the downstream task.
 
 ## Model Architecture
 
