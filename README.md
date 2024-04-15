@@ -181,8 +181,9 @@ SatCLIP(
 
 ```
 
-## Latest Training Logs
+## Training Logs
 
+### 10 % Data and batch size of 160
 ```
 
 Training
@@ -257,43 +258,112 @@ Validation Loss: tensor(3.3484, device='cuda:0')
 Best Model is saved!
 
 ```
+### 25 % Data and batch size of 320
+
+```
+Training
+Epoch: 1
+100%
+ 75/75 [17:14<00:00, 12.16s/it, lr=1e-5, train_loss=24.8]
+100%
+ 9/9 [01:55<00:00, 10.75s/it, valid_loss=5.82]
+Validation Loss: tensor(5.8369, device='cuda:0')
+Validation Loss: tensor(5.8117, device='cuda:0')
+Validation Loss: tensor(5.8894, device='cuda:0')
+Validation Loss: tensor(5.7518, device='cuda:0')
+Validation Loss: tensor(5.9232, device='cuda:0')
+Validation Loss: tensor(5.7929, device='cuda:0')
+Validation Loss: tensor(5.8639, device='cuda:0')
+Validation Loss: tensor(6.0866, device='cuda:0')
+Validation Loss: tensor(4.5701, device='cuda:0')
+Best Model is saved!
+Training
+Epoch: 2
+100%
+ 75/75 [17:23<00:00, 12.24s/it, lr=1e-5, train_loss=5.87]
+100%
+ 9/9 [01:55<00:00, 10.75s/it, valid_loss=5.01]
+Validation Loss: tensor(5.0615, device='cuda:0')
+Validation Loss: tensor(5.0610, device='cuda:0')
+Validation Loss: tensor(5.0555, device='cuda:0')
+Validation Loss: tensor(5.0298, device='cuda:0')
+Validation Loss: tensor(5.0737, device='cuda:0')
+Validation Loss: tensor(5.0493, device='cuda:0')
+Validation Loss: tensor(5.0057, device='cuda:0')
+Validation Loss: tensor(5.1412, device='cuda:0')
+Validation Loss: tensor(3.6576, device='cuda:0')
+Best Model is saved!
+Training
+Epoch: 3
+100%
+ 75/75 [17:20<00:00, 12.18s/it, lr=1e-5, train_loss=5.01]
+100%
+ 9/9 [01:55<00:00, 10.90s/it, valid_loss=4.79]
+Validation Loss: tensor(4.8514, device='cuda:0')
+Validation Loss: tensor(4.8376, device='cuda:0')
+Validation Loss: tensor(4.8272, device='cuda:0')
+Validation Loss: tensor(4.8094, device='cuda:0')
+Validation Loss: tensor(4.8584, device='cuda:0')
+Validation Loss: tensor(4.8212, device='cuda:0')
+Validation Loss: tensor(4.7728, device='cuda:0')
+Validation Loss: tensor(4.9487, device='cuda:0')
+Validation Loss: tensor(3.4614, device='cuda:0')
+Best Model is saved!
+Training
+Epoch: 4
+100%
+ 75/75 [17:21<00:00, 12.17s/it, lr=1e-5, train_loss=4.79]
+100%
+ 9/9 [01:55<00:00, 10.71s/it, valid_loss=4.6]
+Validation Loss: tensor(4.6665, device='cuda:0')
+Validation Loss: tensor(4.6462, device='cuda:0')
+Validation Loss: tensor(4.6289, device='cuda:0')
+Validation Loss: tensor(4.6165, device='cuda:0')
+Validation Loss: tensor(4.6737, device='cuda:0')
+Validation Loss: tensor(4.6266, device='cuda:0')
+Validation Loss: tensor(4.5688, device='cuda:0')
+Validation Loss: tensor(4.7574, device='cuda:0')
+Validation Loss: tensor(3.2952, device='cuda:0')
+Best Model is saved!
+
+```
 
 ## Implementation Details
 
-## SatCLIP Class:
+### SatCLIP Class:
 
 - This class is the main model architecture.
 - It initializes with parameters like temperature, ie (image embedding size), and le (location embedding size).
 - It contains components for image and location encoding, as well as projections.
 - The `forward` method computes the loss by comparing image and location embeddings.
 
-## Image and Location Encoders:
+### Image and Location Encoders:
 
 - The `image_encoder` and `location_encoder` are responsible for encoding image and location data, respectively.
 - The `image_encoder` uses a pre-trained ResNet18 model (`Resnet`) for image feature extraction.
 - The `location_encoder` uses a pre-trained location encoder.
 
-## Projection Layers:
+### Projection Layers:
 
 - `image_projection` and `loc_projection` are projection layers that transform the encoded features into a common embedding space.
 - These layers might help in aligning the representations of images and locations.
 
-## Loss Calculation:
+### Loss Calculation:
 
 - The model computes a contrastive loss based on the similarity between image and location embeddings.
 - It calculates individual cross-entropy losses for images and locations and combines them to form the final loss.
 
-## Helper Functions:
+### Helper Functions:
 
 - `calculate_cross_entropy`: Computes the cross-entropy loss between predictions and targets.
 
-## LE Class (Location Encoder):
+### LE Class (Location Encoder):
 
 - This class is responsible for encoding location data.
 - It initializes with the custom geoclip `LocationEncoder`.
 - The `forward` method converts latitude and longitude coordinates into embeddings using the `LocationEncoder`.
 
-## Resnet Class:
+### Resnet Class:
 
 - This class defines the image encoder using a pre-trained MOCO-ResNet18 model.
 - The ResNet18 model's fully connected layer (`fc`) is made trainable while freezing the rest of the model.
