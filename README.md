@@ -1,10 +1,11 @@
 # ToySatCLIP
 
-##Goal
+## Goal
 My implementation of a ToySatCLIP model trained on the S2-100k dataset.
 
 ## Model Architecture
 
+```
 SatCLIP(
   (image_encoder): Resnet(
     (visual): ResNet(
@@ -177,6 +178,8 @@ SatCLIP(
     (dropout_layer): Dropout(p=0.1, inplace=False)
   )
 )
+
+```
 
 ## Latest Training Logs
 
